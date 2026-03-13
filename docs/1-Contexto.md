@@ -66,3 +66,97 @@ O Bora Brasil é desenvolvido para **qualquer cidadão brasileiro com acesso à 
 - **Jornalistas, pesquisadores e educadores** que precisam de dados legislativos organizados e comparáveis para seus trabalhos.
 
 > O sistema foi projetado com **interface intuitiva e linguagem acessível**, sem exigir conhecimento prévio sobre política ou legislação para ser utilizado.
+
+---
+
+## 1.5 Funcionalidades Macro
+
+### 🏛️ Dashboard Principal
+- Visão geral do Congresso Nacional com estatísticas em tempo real
+- Cards informativos: total de senadores, deputados e parlamentares com score
+- Filtros avançados por estado, partido, casa legislativa e busca por nome
+- Ordenação por nome, partido, estado ou score de desempenho
+- Grade visual com fotos e informações básicas dos parlamentares
+
+---
+
+### 📊 Simulador de Impacto Social
+- Seleção de faixa de renda (Classe E, D, C, B, A) baseada em dados IBGE/ABEP
+- Cálculo personalizado de impacto das votações para cada classe social
+- Ranking dos melhores parlamentares para cada faixa de renda
+- Metodologia detalhada com 5 passos explicativos
+- Pódio visual com os 3 melhores parlamentares
+- Filtros específicos por estado e partido nos resultados
+
+---
+
+### 👤 Perfil Individual do Parlamentar
+- Informações básicas: foto, nome completo, partido, estado, email
+- Score geral com visualização gráfica (0–100)
+- 4 pilares de avaliação:
+  - Impacto Econômico
+  - Serviços Essenciais
+  - Presença e Coerência
+  - Benefício por Renda
+- Análise detalhada de votações recentes
+- Métricas de presença e coerência
+
+---
+
+### 🗳️ Sistema de Votações
+- Coleta automática de votações do Senado Federal via API oficial
+- Classificação inteligente de temas (tributação, saúde, educação, trabalho, previdência)
+- Análise de direção (progressivo/regressivo) de cada proposta
+- Cálculo de impacto por faixa de renda
+- Fórmula: `impacto = peso_tema × voto × direção`
+
+---
+
+### 📈 Sistema de Scoring
+- Algoritmo ponderado baseado em dados socioeconômicos
+- Pesos diferenciados por tema e classe social
+- Normalização de scores (0–100, onde 50 é neutro)
+- Cores intuitivas: 🟢 verde (positivo), 🟡 amarelo (neutro), 🔴 vermelho (negativo)
+- Labels descritivos: **Excelente**, **Bom**, **Neutro**, **Ruim**, **Crítico**
+
+---
+
+### 🔌 APIs e Integrações
+
+| Fonte | Dado |
+|-------|------|
+| API Dados Abertos do Senado | Votações e proposições |
+| API da Câmara dos Deputados | Dados de parlamentares |
+| IBGE PNAD Contínua | Dados socioeconômicos de renda |
+| ABEP Critério Brasil 2024 | Classificação de classes sociais |
+| Decreto nº 12.797/2025 | Salário mínimo vigente (R$ 1.621) |
+
+- Cache inteligente para otimizar performance
+- Endpoints REST para todas as funcionalidades
+- Dados em tempo real de proposições, votações e presença
+
+---
+
+### 🎨 Interface e UX
+- Design moderno com TailwindCSS e shadcn/ui
+- Tema claro/escuro automático
+- Layout responsivo para mobile e desktop
+- Navegação intuitiva com breadcrumbs
+- Carregamento assíncrono com estados de loading
+- Tratamento de erros amigável
+
+---
+
+### 🔧 Stack Técnica
+
+| Camada | Tecnologia |
+|--------|------------|
+| Framework | Next.js 14 com App Router |
+| Linguagem | TypeScript |
+| Estilização | TailwindCSS + shadcn/ui |
+| Dados | React Query (cache e sincronização) |
+| Deploy | Vercel |
+
+- Componentes reutilizáveis com UI consistente
+- SEO otimizado com metadados
+- Performance com lazy loading e code splitting
