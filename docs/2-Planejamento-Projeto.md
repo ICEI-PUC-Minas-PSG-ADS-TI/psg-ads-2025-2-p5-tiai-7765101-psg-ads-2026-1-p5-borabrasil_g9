@@ -5,9 +5,9 @@ O projeto adota uma metodologia ágil, simulando o ambiente de uma Software Hous
 
 ---
 
-### 🚨 Regra de Ouro: 
+### 🚨 Regra de Ouro:
 
-> ❗Não existe divisão entre “quem faz documento”, “quem faz Front-end” e “quem faz Back-end”.
+> ❗Não existe divisão entre "quem faz documento", "quem faz Front-end" e "quem faz Back-end".
 
 <br>Todos os integrantes são **Desenvolvedores Full-Stack** e devem implementar **Fatias Verticais (Vertical Slices)**.
 
@@ -80,12 +80,12 @@ Os papéis abaixo são apenas para organização do time.
 
 ---
 
-##  Definição dos Papéis – Sprint 1
+## Definição dos Papéis – Sprint 1
 
-- 👨‍💻 Tech Lead:
-- 🗄️ Arquiteto de Dados:
-- 🧪 Gerente de Qualidade:
-- 📋 Facilitador Ágil:
+- 👨‍💻 Tech Lead: **Pedro Veloso Soares**
+- 🗄️ Arquiteto de Dados: **Reinato Silva Lessa Junior**
+- 🧪 Gerente de Qualidade: **Reinato Silva Lessa Junior**
+- 📋 Facilitador Ágil: **Pedro Veloso Soares**
 
 > Caso os papéis mudem nas próximas Sprints, atualizar neste documento.
 
@@ -131,46 +131,44 @@ O projeto pode utilizar a aba **Projects** do GitHub, porém é **OBRIGATÓRIO p
 
 ---
 
-# 🟢 Sprint 1 – Setup
+## 🟢 Sprint 1 – Setup
 
 | Responsável | Papel | Tarefa | Início | Prazo | Status |
-|-------------|--------|--------|--------|--------|--------|
-|             |        | Preencher Visão do Produto, ODS e Backlog no README | 12/03 | 15/03 | ❌ |
-|             |        | Criar instância do Banco de Dados | 12/03 | 16/03 | ❌ |
-|             |        | Criar repositório e estruturar pastas | 12/03 | 18/03 | ❌ |
-|             |        | Criar tela Hello World conectada à API | 15/03 | 20/03 | ❌ |
+|-------------|-------|--------|--------|-------|--------|
+| Pedro | Facilitador | Preencher Visão do Produto, ODS e Backlog no README | 12/03 | 15/03 | ✔️ |
+| Reinato | Arquiteto | Criar instância do Banco de Dados | 12/03 | 16/03 | ✔️ |
+| Pedro | Tech Lead | Criar repositório e estruturar pastas | 12/03 | 18/03 | ✔️ |
+| Todos | Dev | Criar tela Hello World conectada à API | 15/03 | 20/03 | ✔️ |
 
 ---
 
-# 🟡 Sprint 2 – MVP
+## 🟡 Sprint 2 – MVP
 
 | Responsável | Papel | Tarefa | Início | Prazo | Status |
-|-------------|--------|--------|--------|--------|--------|
-|             |        | Gerar Script do Banco de Dados | 21/03 | 24/03 | ❌ |
-|             |        | Desenvolver Fatia 1 (BD + API + Tela) | 22/03 | 30/03 | ❌ |
-|             |        | Documentar Requisitos do MVP | 25/03 | 02/04 | ❌ |
-|             |        | Revisão técnica e Merge | 02/04 | 05/04 | ❌ |
+|-------------|-------|--------|--------|-------|--------|
+| Reinato | Arquiteto | Gerar Script do Banco de Dados (Tabelas de Parlamentares) | 21/03 | 24/03 | 📝 |
+| Pedro | Dev | Desenvolver Fatia 1 (Dashboard + API de Consumo) | 22/03 | 30/03 | 📝 |
+| Pedro | Facilitador | Documentar Requisitos do MVP | 25/03 | 02/04 | ❌ |
+| Reinato | QA | Revisão técnica e Merge | 02/04 | 05/04 | ❌ |
 
 ---
 
-# 🔵 Sprint 3 – Core
+## 🔵 Sprint 3 – Core
 
 | Responsável | Papel | Tarefa | Início | Prazo | Status |
-|-------------|--------|--------|--------|--------|--------|
-|             |        | Implementar Regra de Negócio Y | 06/04 | 15/04 | ❌ |
-|             |        | Implementar Cálculo/Processo Z | 06/04 | 15/04 | ❌ |
-|             |        | Atualizar DER via Engenharia Reversa | 16/04 | 20/04 | ❌ |
-|             |        | Atualizar Diagrama de Classes | 16/04 | 23/04 | ❌ |
+|-------------|-------|--------|--------|-------|--------|
+| Pedro | Dev | Implementar Cálculo de Impacto por Classe Social | 06/04 | 15/04 | ❌ |
+| Reinato | Dev | Implementar Sistema de Scoring e Filtros | 06/04 | 15/04 | ❌ |
+| Reinato | Arquiteto | Atualizar DER via Engenharia Reversa | 16/04 | 20/04 | ❌ |
+| Pedro | Tech Lead | Atualizar Diagrama de Classes | 16/04 | 23/04 | ❌ |
 
 ---
 
-# 🔴 Sprint 4 – Finalização
+## 🔴 Sprint 4 – Finalização
 
 | Responsável | Papel | Tarefa | Início | Prazo | Status |
-|-------------|--------|--------|--------|--------|--------|
-|             |        | Correção de bugs | 22/05 | 05/06 | ❌ |
-|             |        | Finalizar relatórios e dashboards | 01/06 | 15/06 | ❌ |
-|             |        | Preencher Relatório APC | 10/06 | 20/06 | ❌ |
-|             |        | Testes finais e consolidar README | 15/06 | 25/06 | ❌ |
-
----
+|-------------|-------|--------|--------|-------|--------|
+| Reinato | QA | Correção de bugs e Testes de Stress | 22/05 | 05/06 | ❌ |
+| Pedro | Dev | Finalizar visualizações e dashboards de análise | 01/06 | 15/06 | ❌ |
+| Pedro | Facilitador | Preencher Relatório APC | 10/06 | 20/06 | ❌ |
+| Todos | Dev | Testes finais e consolidar README | 15/06 | 25/06 | ❌ |
