@@ -1,0 +1,32 @@
+{
+  "descricao": "Mapa de fontes para estimar custo orçamentário de proposições legislativas",
+  "fontes": {
+    "ementa": {
+      "descricao": "Texto da ementa pode mencionar valores ou impacto fiscal",
+      "confiabilidade": "baixa",
+      "campo": "ementa"
+    },
+    "exposicao_motivos": {
+      "descricao": "Exposição de motivos frequentemente detalha impacto fiscal",
+      "confiabilidade": "media",
+      "campo": "ExplicacaoEmentaMateria"
+    },
+    "parecer_comissao": {
+      "descricao": "Pareceres de comissões podem incluir análise de impacto",
+      "confiabilidade": "alta",
+      "campo": "tramitacao"
+    }
+  },
+  "custoNormalizacao": {
+    "descricao": "Faixas para normalizar custo orçamentário em escala 0-1",
+    "faixas": [
+      { "limiteReais": 1000000, "custoNormalizado": 0.1 },
+      { "limiteReais": 10000000, "custoNormalizado": 0.2 },
+      { "limiteReais": 100000000, "custoNormalizado": 0.3 },
+      { "limiteReais": 1000000000, "custoNormalizado": 0.5 },
+      { "limiteReais": 10000000000, "custoNormalizado": 0.7 },
+      { "limiteReais": 100000000000, "custoNormalizado": 0.9 },
+      { "limiteReais": null, "custoNormalizado": 1.0 }
+    ]
+  }
+}

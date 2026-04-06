@@ -1,0 +1,90 @@
+{
+  "regras": [
+    {
+      "temaId": "tributacao",
+      "descricao": "Redução de impostos sobre consumo básico (ICMS alimentos, etc.)",
+      "peso": 0.7,
+      "categoria": "tributacao"
+    },
+    {
+      "temaId": "tributacao",
+      "descricao": "Aumento de impostos sobre grandes fortunas/patrimônio",
+      "peso": 0.5,
+      "categoria": "tributacao"
+    },
+    {
+      "temaId": "economia",
+      "descricao": "Estímulo ao crédito para micro e pequenas empresas",
+      "peso": 0.6,
+      "categoria": "credito"
+    },
+    {
+      "temaId": "trabalho_emprego",
+      "descricao": "Geração de empregos e proteção ao trabalhador",
+      "peso": 0.8,
+      "categoria": "emprego"
+    },
+    {
+      "temaId": "industria_comercio",
+      "descricao": "Proteção da indústria nacional e comércio justo",
+      "peso": 0.4,
+      "categoria": "comercio"
+    },
+    {
+      "temaId": "financas",
+      "descricao": "Regulação do sistema financeiro em favor do consumidor",
+      "peso": 0.5,
+      "categoria": "regulacao"
+    },
+    {
+      "temaId": "energia",
+      "descricao": "Redução de tarifas de energia e serviços públicos",
+      "peso": 0.6,
+      "categoria": "inflacao"
+    },
+    {
+      "temaId": "agricultura",
+      "descricao": "Agricultura familiar e segurança alimentar",
+      "peso": 0.7,
+      "categoria": "inflacao"
+    },
+    {
+      "temaId": "previdencia",
+      "descricao": "Proteção previdenciária para trabalhadores de baixa renda",
+      "peso": 0.6,
+      "categoria": "emprego"
+    },
+    {
+      "temaId": "transporte",
+      "descricao": "Transporte público acessível e barato",
+      "peso": 0.5,
+      "categoria": "inflacao"
+    }
+  ],
+  "pesosPorCategoria": {
+    "tributacao": {
+      "descricao": "Impacto em impostos e carga tributária",
+      "pesoBase": 0.6
+    },
+    "inflacao": {
+      "descricao": "Impacto em preços e custo de vida",
+      "pesoBase": 0.7
+    },
+    "emprego": {
+      "descricao": "Impacto em emprego e renda do trabalho",
+      "pesoBase": 0.8
+    },
+    "credito": {
+      "descricao": "Impacto em acesso a crédito",
+      "pesoBase": 0.5
+    },
+    "comercio": {
+      "descricao": "Impacto em comércio e indústria",
+      "pesoBase": 0.4
+    },
+    "regulacao": {
+      "descricao": "Impacto regulatório no mercado",
+      "pesoBase": 0.3
+    }
+  }
+}

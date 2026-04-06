@@ -1,0 +1,49 @@
+{
+  "categorias": {
+    "saude": {
+      "descricao": "Saúde pública, SUS, medicamentos, hospitais",
+      "pesoBase": 1.0,
+      "temas": ["saude"]
+    },
+    "educacao": {
+      "descricao": "Educação pública, escolas, universidades, creches",
+      "pesoBase": 0.95,
+      "temas": ["educacao"]
+    },
+    "saneamento": {
+      "descricao": "Saneamento básico, água tratada, esgoto",
+      "pesoBase": 0.9,
+      "temas": ["meio_ambiente", "urbanismo_habitacao"]
+    },
+    "transporte": {
+      "descricao": "Transporte público, mobilidade urbana",
+      "pesoBase": 0.8,
+      "temas": ["transporte"]
+    },
+    "seguranca_alimentar": {
+      "descricao": "Alimentação, combate à fome, agricultura familiar",
+      "pesoBase": 0.95,
+      "temas": ["agricultura"]
+    },
+    "habitacao": {
+      "descricao": "Moradia popular, programas habitacionais",
+      "pesoBase": 0.85,
+      "temas": ["urbanismo_habitacao"]
+    },
+    "assistencia_social": {
+      "descricao": "Programas sociais, transferência de renda",
+      "pesoBase": 0.9,
+      "temas": ["direitos_humanos", "previdencia"]
+    }
+  },
+  "mapeamentoTemas": {
+    "saude": "saude",
+    "educacao": "educacao",
+    "meio_ambiente": "saneamento",
+    "transporte": "transporte",
+    "agricultura": "seguranca_alimentar",
+    "urbanismo_habitacao": "habitacao",
+    "direitos_humanos": "assistencia_social",
+    "previdencia": "assistencia_social"
+  }
+}

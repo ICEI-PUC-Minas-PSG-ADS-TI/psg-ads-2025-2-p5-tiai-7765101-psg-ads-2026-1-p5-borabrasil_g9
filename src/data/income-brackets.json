@@ -1,0 +1,179 @@
+{
+  "salarioMinimo": 1621,
+  "anoReferencia": 2026,
+  "fonte": "Decreto nº 12.797/2025 (SM) + ABEP Critério Brasil 2024 + IBGE PNAD Contínua",
+  "faixas": {
+    "classe_e": {
+      "descricao": "Classe E — até 2 SM",
+      "limiteInferior": 0,
+      "limiteSuperior": 3242,
+      "populacaoPercentual": 28
+    },
+    "classe_d": {
+      "descricao": "Classe D — 2 a 4 SM",
+      "limiteInferior": 3242,
+      "limiteSuperior": 6484,
+      "populacaoPercentual": 26
+    },
+    "classe_c": {
+      "descricao": "Classe C — 4 a 10 SM",
+      "limiteInferior": 6484,
+      "limiteSuperior": 16210,
+      "populacaoPercentual": 22
+    },
+    "classe_b": {
+      "descricao": "Classe B — 10 a 20 SM",
+      "limiteInferior": 16210,
+      "limiteSuperior": 32420,
+      "populacaoPercentual": 21
+    },
+    "classe_a": {
+      "descricao": "Classe A — acima de 20 SM",
+      "limiteInferior": 32420,
+      "limiteSuperior": null,
+      "populacaoPercentual": 3
+    }
+  },
+  "vetoresPorTema": {
+    "tributacao": {
+      "classe_e": 0.9,
+      "classe_d": 0.7,
+      "classe_c": 0.3,
+      "classe_b": -0.1,
+      "classe_a": -0.4
+    },
+    "economia": {
+      "classe_e": 0.4,
+      "classe_d": 0.5,
+      "classe_c": 0.5,
+      "classe_b": 0.4,
+      "classe_a": 0.3
+    },
+    "trabalho_emprego": {
+      "classe_e": 0.9,
+      "classe_d": 0.8,
+      "classe_c": 0.4,
+      "classe_b": 0.1,
+      "classe_a": 0.0
+    },
+    "saude": {
+      "classe_e": 1.0,
+      "classe_d": 0.9,
+      "classe_c": 0.5,
+      "classe_b": 0.2,
+      "classe_a": 0.0
+    },
+    "educacao": {
+      "classe_e": 1.0,
+      "classe_d": 0.9,
+      "classe_c": 0.6,
+      "classe_b": 0.3,
+      "classe_a": 0.1
+    },
+    "meio_ambiente": {
+      "classe_e": 0.6,
+      "classe_d": 0.5,
+      "classe_c": 0.5,
+      "classe_b": 0.4,
+      "classe_a": 0.4
+    },
+    "seguranca": {
+      "classe_e": 0.7,
+      "classe_d": 0.7,
+      "classe_c": 0.6,
+      "classe_b": 0.5,
+      "classe_a": 0.5
+    },
+    "direitos_humanos": {
+      "classe_e": 0.9,
+      "classe_d": 0.7,
+      "classe_c": 0.4,
+      "classe_b": 0.2,
+      "classe_a": 0.1
+    },
+    "agricultura": {
+      "classe_e": 0.8,
+      "classe_d": 0.7,
+      "classe_c": 0.4,
+      "classe_b": 0.1,
+      "classe_a": 0.0
+    },
+    "transporte": {
+      "classe_e": 0.9,
+      "classe_d": 0.8,
+      "classe_c": 0.4,
+      "classe_b": 0.1,
+      "classe_a": 0.0
+    },
+    "urbanismo_habitacao": {
+      "classe_e": 0.9,
+      "classe_d": 0.7,
+      "classe_c": 0.3,
+      "classe_b": 0.1,
+      "classe_a": 0.0
+    },
+    "previdencia": {
+      "classe_e": 0.8,
+      "classe_d": 0.7,
+      "classe_c": 0.5,
+      "classe_b": 0.3,
+      "classe_a": 0.1
+    },
+    "energia": {
+      "classe_e": 0.7,
+      "classe_d": 0.6,
+      "classe_c": 0.4,
+      "classe_b": 0.3,
+      "classe_a": 0.2
+    },
+    "financas": {
+      "classe_e": 0.4,
+      "classe_d": 0.5,
+      "classe_c": 0.5,
+      "classe_b": 0.5,
+      "classe_a": 0.4
+    },
+    "industria_comercio": {
+      "classe_e": 0.3,
+      "classe_d": 0.4,
+      "classe_c": 0.5,
+      "classe_b": 0.5,
+      "classe_a": 0.4
+    },
+    "administracao": {
+      "classe_e": 0.3,
+      "classe_d": 0.3,
+      "classe_c": 0.3,
+      "classe_b": 0.3,
+      "classe_a": 0.3
+    },
+    "ciencia_tecnologia": {
+      "classe_e": 0.3,
+      "classe_d": 0.4,
+      "classe_c": 0.5,
+      "classe_b": 0.5,
+      "classe_a": 0.5
+    },
+    "comunicacoes": {
+      "classe_e": 0.5,
+      "classe_d": 0.5,
+      "classe_c": 0.4,
+      "classe_b": 0.3,
+      "classe_a": 0.3
+    },
+    "defesa": {
+      "classe_e": 0.2,
+      "classe_d": 0.2,
+      "classe_c": 0.3,
+      "classe_b": 0.3,
+      "classe_a": 0.3
+    },
+    "relacoes_exteriores": {
+      "classe_e": 0.1,
+      "classe_d": 0.2,
+      "classe_c": 0.3,
+      "classe_b": 0.4,
+      "classe_a": 0.4
+    }
+  }
+}

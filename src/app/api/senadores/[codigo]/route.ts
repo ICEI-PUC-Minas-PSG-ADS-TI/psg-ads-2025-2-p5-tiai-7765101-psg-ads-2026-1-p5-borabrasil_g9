@@ -1,0 +1,34 @@
+import { NextResponse } from "next/server";
+import { conditionalFetch, TTL } from "@/lib/cache";
+
+const SENADO_BASE = "https://legis.senado.leg.br/dadosabertos";
+
+export const dynamic = "force-dynamic";
+
+export async function GET(
+  _request: Request,
+  { params }: { params: { codigo: string } },
+) {
+  const { codigo } = params;
+
+  try {
+    const { data, fromCache } = await conditionalFetch(
+      `${SENADO_BASE}/senador/${codigo}`,
+      `senador:${codigo}`,
+      TTL.DETALHE_PARLAMENTAR,
+    );
+
+    return NextResponse.json(
+      { data, fromCache },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=3600",
+          "X-Cache": fromCache ? "HIT" : "MISS",
+        },
+      },
+    );
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Erro desconhecido";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
+}
