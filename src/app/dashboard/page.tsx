@@ -411,7 +411,7 @@ export default function DashboardPage() {
                           if (s == null) {
                             return (
                               <span className="inline-block rounded-full px-2 py-0.5 text-xs font-bold text-muted-foreground">
-                                -
+                                Não a dados
                               </span>
                             );
                           }
