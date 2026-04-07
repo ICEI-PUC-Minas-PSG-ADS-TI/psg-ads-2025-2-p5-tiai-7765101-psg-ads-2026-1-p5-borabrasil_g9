@@ -20,11 +20,14 @@ import {
   ClipboardCheck,
   Wallet,
   Scale,
+  ExternalLink,
 } from "lucide-react";
 import { getCorScore, getLabelScore, getBgCorScore } from "@/lib/scoring/aggregator";
 import { calcularScoreCompleto } from "@/lib/scoring/aggregator";
 import type { Parlamentar, Casa } from "@/services/types/scoring.types";
 import type { VotoComTema } from "@/lib/scoring/types";
+import { VotoItem } from "@/components/voto-item";
+import { gerarUrlPerfilOficial, extrairCodigoParlamentar } from "@/lib/parlamentar-links";
 
 function ScoreBar({ valor, label }: { valor: number; label: string }) {
   return (
@@ -203,7 +206,24 @@ export default function ParlamentarPage() {
           )}
         </div>
         <div className="flex-1">
-          <h1 className="text-3xl font-bold tracking-tight">{parlamentar.nome}</h1>
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-3xl font-bold tracking-tight">{parlamentar.nome}</h1>
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 group"
+              onClick={() => window.open(gerarUrlPerfilOficial({
+                nome: parlamentar.nome,
+                casa: parlamentar.casa,
+                uf: parlamentar.uf,
+                partido: parlamentar.partido,
+                codigo: extrairCodigoParlamentar(parlamentar.id)?.codigo
+              }), '_blank')}
+            >
+              <ExternalLink className="h-3.5 w-3.5 text-primary group-hover:scale-110 transition-transform duration-200" />
+              <span className="text-primary font-medium">Perfil Oficial</span>
+            </Button>
+          </div>
           <p className="text-lg text-muted-foreground">{parlamentar.nomeCompleto}</p>
           <div className="mt-3 flex flex-wrap gap-3">
             <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
@@ -220,7 +240,7 @@ export default function ParlamentarPage() {
             {parlamentar.email && (
               <a
                 href={`mailto:${parlamentar.email}`}
-                className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-sm font-medium hover:bg-muted/80"
+                className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-sm font-medium hover:bg-muted/80 transition-colors duration-200"
               >
                 <Mail className="h-3.5 w-3.5" />
                 E-mail
@@ -296,39 +316,11 @@ export default function ParlamentarPage() {
           <CardContent>
             <div className="space-y-2">
               {votosReais.map((v, i) => (
-                <div
+                <VotoItem
                   key={`${v.proposicaoId}-${i}`}
-                  className="flex items-center gap-3 rounded-lg border p-3 text-sm"
-                >
-                  <span
-                    className={`flex h-7 w-14 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold ${
-                      v.voto === "Sim"
-                        ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                        : v.voto === "Não"
-                          ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
-                          : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
-                    }`}
-                  >
-                    {v.voto}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate font-medium">{v.descricao}</p>
-                    <div className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
-                      {v.temaCategoria && (
-                        <span className="rounded bg-muted px-1.5 py-0.5">
-                          {v.temaCategoria.replace(/_/g, " ")}
-                        </span>
-                      )}
-                      <span>
-                        {v.direcaoImpacto === 1
-                          ? "↑ Progressivo"
-                          : v.direcaoImpacto === -1
-                            ? "↓ Regressivo"
-                            : "— Neutro"}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                  voto={v}
+                  votoParlamentar={v.voto}
+                />
               ))}
             </div>
           </CardContent>
