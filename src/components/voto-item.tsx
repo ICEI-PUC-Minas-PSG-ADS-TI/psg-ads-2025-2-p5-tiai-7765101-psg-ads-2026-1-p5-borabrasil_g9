@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Info, X } from "lucide-react";
+import { ExternalLink, Info, X, FileText } from "lucide-react";
 import { criarDetalheVotacao, type DetalheVotacao } from "@/lib/votacao-details";
 import type { VotoComTema } from "@/lib/scoring/types";
 
@@ -13,7 +13,7 @@ interface VotoItemProps {
 }
 
 export function VotoItem({ voto, votoParlamentar }: VotoItemProps) {
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(false); // Mostrar detalhes fechados por padrão
   const detalhe = criarDetalheVotacao(voto, votoParlamentar);
 
   return (
@@ -34,7 +34,15 @@ export function VotoItem({ voto, votoParlamentar }: VotoItemProps) {
           {votoParlamentar}
         </span>
         <div className="min-w-0 flex-1">
-          <p className="truncate font-medium">{voto.descricao}</p>
+          <div className="flex items-center gap-2">
+            <p className="truncate font-medium">{detalhe.resumo}</p>
+            {detalhe.resumo.includes("nº") && (
+              <span className="flex items-center gap-1 rounded bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                <FileText className="h-3 w-3" />
+                {detalhe.resumo.match(/nº\s+(\d+)/)?.[1]}
+              </span>
+            )}
+          </div>
           <div className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
             {voto.temaCategoria && (
               <span className="rounded bg-muted px-1.5 py-0.5">
@@ -57,7 +65,7 @@ export function VotoItem({ voto, votoParlamentar }: VotoItemProps) {
                 setShowDetails(!showDetails);
               }}
             >
-              <Info className="h-3 w-3" />
+              {showDetails ? <X className="h-3 w-3" /> : <Info className="h-3 w-3" />}
             </Button>
           </div>
         </div>
@@ -116,22 +124,6 @@ export function VotoItem({ voto, votoParlamentar }: VotoItemProps) {
                   </Button>
                 </div>
               )}
-
-              {/* Fechar */}
-              <div className="flex justify-end pt-2 border-t">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-xs"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowDetails(false);
-                  }}
-                >
-                  <X className="h-3 w-3 mr-1" />
-                  Fechar
-                </Button>
-              </div>
             </div>
           </CardContent>
         </Card>

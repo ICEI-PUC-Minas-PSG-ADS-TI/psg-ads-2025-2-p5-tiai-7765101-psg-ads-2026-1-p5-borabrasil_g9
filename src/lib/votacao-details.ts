@@ -17,6 +17,155 @@ export interface DetalheVotacao {
   explicacao: string;
 }
 
+export function extrairNumeroVotacao(descricao: string): string | null {
+  // Tentar extrair número de diferentes formatos
+  const patterns = [
+    /Projeto de Lei\s+n?º\s+(\d+)/i,
+    /Projeto de Lei Complementar\s+n?º\s+(\d+)/i,
+    /Medida Provisória\s+n?º\s+(\d+)/i,
+    /Proposta de Emenda à Constituição\s+n?º\s+(\d+)/i,
+    /Projeto de Lei\s+n?º\s+(\d+)/i,
+    /PL\s+n?º\s+(\d+)/i,
+    /PLC\s+n?º\s+(\d+)/i,
+    /MP\s+n?º\s+(\d+)/i,
+    /PEC\s+n?º\s+(\d+)/i
+  ];
+  
+  for (const pattern of patterns) {
+    const match = descricao.match(pattern);
+    if (match) {
+      return match[1];
+    }
+  }
+  
+  return null;
+}
+
+export function extrairTituloProjeto(descricao: string): string | null {
+  // Tentar extrair título completo após o número
+  const patterns = [
+    /Projeto de Lei\s+n?º\s+\d+\s+(.+?)(?:\s+-\s+|$)/i,
+    /Projeto de Lei Complementar\s+n?º\s+\d+\s+(.+?)(?:\s+-\s+|$)/i,
+    /Medida Provisória\s+n?º\s+\d+\s+(.+?)(?:\s+-\s+|$)/i,
+    /Proposta de Emenda à Constituição\s+n?º\s+\d+\s+(.+?)(?:\s+-\s+|$)/i,
+    /PL\s+n?º\s+\d+\s+(.+?)(?:\s+-\s+|$)/i,
+    /PLC\s+n?º\s+\d+\s+(.+?)(?:\s+-\s+|$)/i,
+    /MP\s+n?º\s+\d+\s+(.+?)(?:\s+-\s+|$)/i,
+    /PEC\s+n?º\s+\d+\s+(.+?)(?:\s+-\s+|$)/i
+  ];
+  
+  for (const pattern of patterns) {
+    const match = descricao.match(pattern);
+    if (match) {
+      return match[1].trim();
+    }
+  }
+  
+  return null;
+}
+
+export function gerarResumoVotacao(descricao: string): string {
+  const numero = extrairNumeroVotacao(descricao);
+  const titulo = extrairTituloProjeto(descricao);
+  
+  // Identificar tipo de votação
+  if (descricao.includes("Rejeitado o Requerimento")) {
+    return numero ? `Requerimento nº ${numero} rejeitado` : "Requerimento rejeitado";
+  } else if (descricao.includes("Aprovado")) {
+    if (descricao.includes("Projeto de Lei Complementar")) {
+      if (titulo) {
+        return numero ? `PLC nº ${numero}: ${titulo} - Aprovado` : `Projeto de Lei Complementar: ${titulo} - Aprovado`;
+      }
+      return numero ? `Projeto de Lei Complementar nº ${numero} aprovado` : "Projeto de Lei Complementar aprovado";
+    } else if (descricao.includes("Medida Provisória")) {
+      if (titulo) {
+        return numero ? `MP nº ${numero}: ${titulo} - Aprovada` : `Medida Provisória: ${titulo} - Aprovada`;
+      }
+      return numero ? `Medida Provisória nº ${numero} aprovada` : "Medida Provisória aprovada";
+    } else if (descricao.includes("Proposta de Emenda")) {
+      if (titulo) {
+        return numero ? `PEC nº ${numero}: ${titulo} - Aprovada` : `Proposta de Emenda: ${titulo} - Aprovada`;
+      }
+      return numero ? `PEC nº ${numero} aprovada` : "Proposta de Emenda à Constituição aprovada";
+    } else {
+      if (titulo) {
+        return numero ? `PL nº ${numero}: ${titulo} - Aprovado` : `Projeto de Lei: ${titulo} - Aprovado`;
+      }
+      return numero ? `Projeto de Lei nº ${numero} aprovado` : "Projeto de Lei aprovado";
+    }
+  } else if (descricao.includes("Rejeitada")) {
+    if (descricao.includes("Projeto de Lei Complementar")) {
+      if (titulo) {
+        return numero ? `PLC nº ${numero}: ${titulo} - Rejeitado` : `Projeto de Lei Complementar: ${titulo} - Rejeitado`;
+      }
+      return numero ? `Projeto de Lei Complementar nº ${numero} rejeitado` : "Projeto de Lei Complementar rejeitado";
+    } else if (descricao.includes("Medida Provisória")) {
+      if (titulo) {
+        return numero ? `MP nº ${numero}: ${titulo} - Rejeitada` : `Medida Provisória: ${titulo} - Rejeitada`;
+      }
+      return numero ? `Medida Provisória nº ${numero} rejeitada` : "Medida Provisória rejeitada";
+    } else if (descricao.includes("Proposta de Emenda")) {
+      if (titulo) {
+        return numero ? `PEC nº ${numero}: ${titulo} - Rejeitada` : `Proposta de Emenda: ${titulo} - Rejeitada`;
+      }
+      return numero ? `PEC nº ${numero} rejeitada` : "Proposta de Emenda à Constituição rejeitada";
+    } else {
+      if (titulo) {
+        return numero ? `PL nº ${numero}: ${titulo} - Rejeitado` : `Projeto de Lei: ${titulo} - Rejeitado`;
+      }
+      return numero ? `Projeto de Lei nº ${numero} rejeitado` : "Projeto de Lei rejeitado";
+    }
+  } else if (descricao.includes("Mantido o texto")) {
+    if (descricao.includes("Projeto de Lei Complementar")) {
+      if (titulo) {
+        return numero ? `PLC nº ${numero}: ${titulo} - Texto mantido` : `Projeto de Lei Complementar: ${titulo} - Texto mantido`;
+      }
+      return numero ? `Texto mantido - PLC nº ${numero}` : "Texto mantido";
+    } else if (descricao.includes("Medida Provisória")) {
+      if (titulo) {
+        return numero ? `MP nº ${numero}: ${titulo} - Texto mantido` : `Medida Provisória: ${titulo} - Texto mantido`;
+      }
+      return numero ? `Texto mantido - MP nº ${numero}` : "Texto mantido";
+    } else if (descricao.includes("Proposta de Emenda")) {
+      if (titulo) {
+        return numero ? `PEC nº ${numero}: ${titulo} - Texto mantido` : `Proposta de Emenda: ${titulo} - Texto mantido`;
+      }
+      return numero ? `Texto mantido - PEC nº ${numero}` : "Texto mantido";
+    } else {
+      if (titulo) {
+        return numero ? `PL nº ${numero}: ${titulo} - Texto mantido` : `Projeto de Lei: ${titulo} - Texto mantido`;
+      }
+      return numero ? `Texto mantido - PL nº ${numero}` : "Texto mantido";
+    }
+  } else if (descricao.includes("Suprimido o texto")) {
+    if (descricao.includes("Projeto de Lei Complementar")) {
+      if (titulo) {
+        return numero ? `PLC nº ${numero}: ${titulo} - Texto suprimido` : `Projeto de Lei Complementar: ${titulo} - Texto suprimido`;
+      }
+      return numero ? `Texto suprimido - PLC nº ${numero}` : "Texto suprimido";
+    } else if (descricao.includes("Medida Provisória")) {
+      if (titulo) {
+        return numero ? `MP nº ${numero}: ${titulo} - Texto suprimido` : `Medida Provisória: ${titulo} - Texto suprimido`;
+      }
+      return numero ? `Texto suprimido - MP nº ${numero}` : "Texto suprimido";
+    } else if (descricao.includes("Proposta de Emenda")) {
+      if (titulo) {
+        return numero ? `PEC nº ${numero}: ${titulo} - Texto suprimido` : `Proposta de Emenda: ${titulo} - Texto suprimido`;
+      }
+      return numero ? `Texto suprimido - PEC nº ${numero}` : "Texto suprimido";
+    } else {
+      if (titulo) {
+        return numero ? `PL nº ${numero}: ${titulo} - Texto suprimido` : `Projeto de Lei: ${titulo} - Texto suprimido`;
+      }
+      return numero ? `Texto suprimido - PL nº ${numero}` : "Texto suprimido";
+    }
+  } else {
+    // Extrair primeira frase como resumo
+    const primeiraFrase = descricao.split('.')[0];
+    return numero ? `${primeiraFrase} - Projeto nº ${numero}` : primeiraFrase;
+  }
+}
+
 export function gerarExplicacaoVoto(voto: DetalheVotacao): string {
   const { votoParlamentar, impacto, tema, descricao, resultado } = voto;
   
@@ -79,19 +228,23 @@ function getContextoTema(tema: string): string {
 }
 
 export function gerarUrlOficial(votacao: DetalheVotacao): string {
+  const numero = extrairNumeroVotacao(votacao.descricao);
+  const titulo = extrairTituloProjeto(votacao.descricao);
+  
   if (votacao.casa === "senado") {
-    // Tentar extrair ID numérico da proposição
-    const match = votacao.descricao.match(/Projeto de Lei\s+n?º\s+(\d+)/);
-    if (match) {
-      return `https://www25.senado.leg.br/web/atividade/materias/-/materia/votacao/${match[1]}`;
+    if (numero) {
+      // URL de busca no Senado Federal que realmente funciona
+      return `https://www25.senado.leg.br/web/atividade/materias/-/materia/pesquisa?numero=${numero}`;
     }
+    // Fallback: página de busca geral
     return "https://www25.senado.leg.br/web/atividade/materias";
   } else {
     // Câmara dos Deputados
-    const match = votacao.descricao.match(/Projeto de Lei\s+n?º\s+(\d+)/);
-    if (match) {
-      return `https://www.camara.leg.br/proposicoesWeb/fasesDaProposicao?detalhe=true&idProposicao=${match[1]}`;
+    if (numero) {
+      // URL da Câmara para proposições - formato correto
+      return `https://www.camara.leg.br/proposicoesWeb/fasesDaProposicao?numero=${numero}`;
     }
+    // Fallback: página de proposições
     return "https://www.camara.leg.br/proposicoesWeb";
   }
 }
@@ -100,6 +253,9 @@ export function criarDetalheVotacao(
   voto: any,
   votoParlamentar: "Sim" | "Não" | "Abstenção" | "Outro"
 ): DetalheVotacao {
+  const numero = extrairNumeroVotacao(voto.descricao);
+  const resumo = gerarResumoVotacao(voto.descricao);
+  
   return {
     id: voto.proposicaoId,
     descricao: voto.descricao,
@@ -115,7 +271,7 @@ export function criarDetalheVotacao(
     },
     votoParlamentar,
     urlOficial: gerarUrlOficial({ ...voto, casa: "senado" }),
-    resumo: voto.descricao.split('.')[0] + '.',
+    resumo,
     explicacao: gerarExplicacaoVoto({ ...voto, votoParlamentar, casa: "senado" })
   };
 }
